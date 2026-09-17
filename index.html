@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UnifyPay — automatic expense tracking from UPI &amp; bank SMS</title>
+<meta name="description" content="UnifyPay reads your UPI and bank SMS on-device and tracks your spending automatically. No manual entry, no bank account linking to a third party.">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #201d1a;
+    --ink-soft: #57524b;
+    --ink-faint: #8a8479;
+    --paper: #f7f4ef;
+    --paper-alt: #efeae1;
+    --rule: #ddd6c9;
+    --accent: #7424E4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+
+  .wrap {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero .icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 0 0 1px rgba(32,29,26,0.06);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    margin: 0 0 0.9rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero .tagline {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 32rem;
+    margin: 0 0 2.25rem;
+  }
+
+  .button {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.65em 1.5em;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: transparent;
+  }
+
+  .button:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  /* ---------- Prose sections ---------- */
+
+  section.prose {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section.prose .eyebrow {
+    display: block;
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  section.prose h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.005em;
+  }
+
+  section.prose p {
+    margin: 0 0 1.25rem;
+  }
+
+  section.prose p:last-child { margin-bottom: 0; }
+
+  section.prose .lede {
+    color: var(--ink-soft);
+  }
+
+  .bank-list {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Screenshots ---------- */
+
+  section.screens {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section.screens .wrap {
+    max-width: none;
+  }
+
+  section.screens .intro {
+    max-width: 40rem;
+    margin: 0 auto 2.25rem;
+    padding: 0 1.5rem;
+  }
+
+  section.screens .intro .eyebrow {
+    display: block;
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  section.screens .intro h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .screens-scroll {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    padding: 0 1.5rem 1rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .screens-scroll img {
+    height: 32rem;
+    max-height: 65vh;
+    width: auto;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    background: var(--paper-alt);
+    box-shadow: 0 0 0 1px rgba(32,29,26,0.08);
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    padding: 4rem 0 5rem;
+  }
+
+  footer .foot-links {
+    margin: 1.75rem 0 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  footer .foot-links a { margin-right: 1.5rem; }
+
+  footer .fine {
+    margin-top: 3rem;
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 30rem) {
+    body { font-size: 17px; }
+    .hero { padding: 3.5rem 0 3rem; }
+    section.prose, section.screens { padding: 3rem 0; }
+    .screens-scroll img { height: 24rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="icon" src="assets/icon.png" alt="UnifyPay app icon">
+    <h1>UnifyPay</h1>
+    <p class="tagline">Reads your UPI and bank SMS and tracks your spending automatically — no typing in expenses, no linking your bank account to a third party.</p>
+    <a class="button" href="https://play.google.com/store/apps/details?id=com.advaith.upimoneytracker">Get it on Google Play</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="prose" id="what">
+    <div class="wrap">
+      <span class="eyebrow">01</span>
+      <h2>What it does</h2>
+      <p>Every UPI or bank transaction already sends you an SMS — the ₹150 debit at the tea stall, the salary credit, the electricity bill autopay. UnifyPay reads those messages on your phone, works out what happened, and logs the expense for you.</p>
+      <p>It auto-categorizes spending as it comes in, so you get a running picture of where your money is going without opening the app after every payment. You can set budgets per category and watch how close you are to them, and there's an analytics view if you want to see trends over weeks or months instead of a flat list of transactions.</p>
+      <p class="lede">No manual entry. No connecting your bank account to some third-party server. It just reads what your bank is already telling you.</p>
+    </div>
+  </section>
+
+  <section class="prose" id="why">
+    <div class="wrap">
+      <span class="eyebrow">02</span>
+      <h2>Why I built it</h2>
+      <p>I'm a second-year BCA student in Bengaluru, and I have started and abandoned more budgeting apps than I'd like to admit. Not because the apps were bad — because I was bad at using them. Manually logging a ₹30 UPI payment for chai, five minutes after logging a ₹50 payment for something else, gets old fast. By day four I'd stop opening the app, and by day ten I'd forget it existed.</p>
+      <p>At some point it occurred to me that I was doing unnecessary work. Every single UPI payment I make already triggers an SMS from my bank, with the amount, the merchant, and the balance, seconds after I pay. The data I was manually typing into a budgeting app was sitting in my inbox already. So instead of building another app that asks you to type things in, I built one that reads what's already there.</p>
+    </div>
+  </section>
+
+  <section class="prose" id="how">
+    <div class="wrap">
+      <span class="eyebrow">03</span>
+      <h2>How it's built</h2>
+      <p>UnifyPay is Kotlin and Jetpack Compose, and the SMS parsing happens entirely on-device — nothing gets sent to a server, mine or anyone else's. That part matters to me more than most other decisions in the app, since it's reading your bank messages.</p>
+      <p>The hard part isn't reading one bank's SMS format, it's reading all of them without the whole thing turning into a pile of if-else statements that breaks every time a bank tweaks its template. So parsing runs through a <code>BankParserFactory</code>: each bank (HDFC, ICICI, SIB, and a generic fallback for other Indian banks) gets its own parser, and instead of blocklisting formats that don't match, each parser scores a message on positive evidence — does it look like a transaction, does it have an amount, a reference, the shape of a debit or credit — and picks the best match. It's held up better than the blocklist approach I started with.</p>
+      <p>There's a biometric app lock on top, since the app has a full read of your financial SMS history sitting on the device.</p>
+      <p>This is a solo build and it's still early — I'm the only person working on it, testing it on my own phone and a couple of friends' phones, and there's more bank formats and edge cases to handle than I'd like.</p>
+    </div>
+  </section>
+
+  <section class="screens" id="screenshots">
+    <div class="intro">
+      <span class="eyebrow">04</span>
+      <h2>Screenshots</h2>
+    </div>
+    <div class="screens-scroll">
+      <img src="assets/screenshot-1.jpg" alt="UnifyPay home screen showing auto-tracked transactions and monthly budget">
+      <img src="assets/screenshot-2.jpg" alt="UnifyPay analytics calendar showing daily spend">
+      <img src="assets/screenshot-3.jpg" alt="UnifyPay onboarding screen explaining the SMS and contacts permissions">
+      <img src="assets/screenshot-4.jpg" alt="UnifyPay add transaction screen">
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="button" href="https://play.google.com/store/apps/details?id=com.advaith.upimoneytracker">Get it on Google Play</a>
+    <p class="foot-links"><a href="mailto:advaithbiju2006@gmail.com">Email me</a></p>
+    <p class="fine">Built by Advaith Biju in Bengaluru.</p>
+  </div>
+</footer>
+
+</body>
+</html>
