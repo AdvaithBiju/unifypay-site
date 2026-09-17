@@ -646,6 +646,7 @@
       <li><a href="#what">What it does</a></li>
       <li><a href="#why">Why</a></li>
       <li><a href="#how">How it's built</a></li>
+      <li><a href="#privacy">Privacy</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#founder">Founder</a></li>
     </ul>
@@ -718,16 +719,25 @@
     <div class="wrap">
       <span class="eyebrow">03</span>
       <h2>How it's built</h2>
-      <p>UnifyPay is Kotlin and Jetpack Compose, and the SMS parsing happens entirely on-device — nothing gets sent to a server, mine or anyone else's. That part matters to me more than most other decisions in the app, since it's reading your bank messages.</p>
+      <p>UnifyPay is built in Kotlin and Jetpack Compose.</p>
       <p>The hard part isn't reading one bank's SMS format, it's reading all of them without the whole thing turning into a pile of if-else statements that breaks every time a bank tweaks its template. So parsing runs through a <code>BankParserFactory</code>: each bank (HDFC, ICICI, SIB, and a generic fallback for other Indian banks) gets its own parser, and instead of blocklisting formats that don't match, each parser scores a message on positive evidence — does it look like a transaction, does it have an amount, a reference, the shape of a debit or credit — and picks the best match. It's held up better than the blocklist approach I started with.</p>
-      <p>There's a biometric app lock on top, since the app has a full read of your financial SMS history sitting on the device.</p>
       <p>This is a solo build and it's still early — I'm the only person working on it, testing it on my own phone and a couple of friends' phones, and there's more bank formats and edge cases to handle than I'd like.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+  <section class="prose reveal" id="privacy">
+    <div class="wrap">
+      <span class="eyebrow">04</span>
+      <h2>Privacy &amp; security</h2>
+      <p>The SMS parsing happens entirely on-device — nothing gets sent to a server, mine or anyone else's. That part matters to me more than most other decisions in the app, since it's reading your bank messages.</p>
+      <p class="lede">There's a biometric app lock on top, since the app has a full read of your financial SMS history sitting on the device.</p>
     </div>
   </section>
 
   <section class="screens reveal" id="screenshots">
     <div class="intro">
-      <span class="eyebrow">04</span>
+      <span class="eyebrow">05</span>
       <h2>Screenshots</h2>
     </div>
     <div class="screens-scroll">
@@ -744,7 +754,7 @@
 
   <section class="prose founder reveal" id="founder">
     <div class="wrap">
-      <span class="eyebrow">05</span>
+      <span class="eyebrow">06</span>
       <h2>Who's building this</h2>
       <div class="founder-card">
         <div class="founder-photo" aria-hidden="true">AB</div>
