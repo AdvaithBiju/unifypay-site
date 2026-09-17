@@ -184,91 +184,178 @@
     text-decoration: none;
   }
 
-  /* ---------- 3D phone mockup ---------- */
+  /* ---------- 3D phone mockup (real box: front/back/edge faces) ---------- */
 
   .phone-stage {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1800px;
-  }
-
-  .phone-mock {
-    width: 230px;
-    height: 476px;
-    background: linear-gradient(160deg, #150438, #3a1189);
-    border-radius: 42px;
-    padding: 12px;
+    padding: 2rem 0;
+    perspective: 2200px;
     position: relative;
-    transform: rotateY(-24deg) rotateX(7deg) rotateZ(2deg);
+  }
+
+  .phone-3d {
+    --w: 224px;
+    --h: 462px;
+    --d: 34px;
+    --r: 42px;
+    width: var(--w);
+    height: var(--h);
+    position: relative;
     transform-style: preserve-3d;
-    box-shadow:
-      36px 50px 90px -28px rgba(0,0,0,0.6),
-      0 0 0 1px rgba(255,255,255,0.08) inset;
+    transform: rotateY(-38deg) rotateX(9deg);
   }
 
-  .phone-mock::before {
-    content: "";
+  .phone-3d__face {
     position: absolute;
-    inset: 0;
-    border-radius: 42px;
-    background: linear-gradient(120deg, rgba(255,255,255,0.18), transparent 45%);
-    pointer-events: none;
+    top: 0;
+    left: 0;
   }
 
-  .phone-mock__notch {
+  .phone-3d__front {
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--r);
+    transform: translateZ(calc(var(--d) / 2));
+    background: #0d0420;
+    padding: 10px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.10) inset;
+  }
+
+  .phone-3d__back {
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--r);
+    transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
+    background: linear-gradient(200deg, #1a0640, #0a0220);
+  }
+
+  .phone-3d__edge {
+    background: linear-gradient(90deg, #05010f 0%, #2c1360 35%, #4a22a0 50%, #2c1360 65%, #05010f 100%);
+    border-radius: 10px;
+  }
+
+  .phone-3d__edge--right {
+    width: var(--d);
+    height: calc(var(--h) - 16px);
+    top: 8px;
+    left: calc(var(--w) - var(--d));
+    transform-origin: left center;
+    transform: rotateY(90deg) translateZ(calc(var(--d) / 2));
+  }
+  .phone-3d__edge--left {
+    width: var(--d);
+    height: calc(var(--h) - 16px);
+    top: 8px;
+    left: 0;
+    transform-origin: right center;
+    transform: rotateY(-90deg) translateZ(calc(var(--d) / 2));
+  }
+  .phone-3d__edge--top {
+    width: calc(var(--w) - 16px);
+    height: var(--d);
+    top: 0;
+    left: 8px;
+    transform-origin: center bottom;
+    transform: rotateX(90deg) translateZ(calc(var(--d) / 2));
+  }
+  .phone-3d__edge--bottom {
+    width: calc(var(--w) - 16px);
+    height: var(--d);
+    top: calc(var(--h) - var(--d));
+    left: 8px;
+    transform-origin: center top;
+    transform: rotateX(-90deg) translateZ(calc(var(--d) / 2));
+  }
+
+  .phone-3d__button {
     position: absolute;
-    top: 12px;
+    background: linear-gradient(90deg, #120633, #2a1258);
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .phone-3d__edge--right .phone-3d__button {
+    left: 8px; width: 4px;
+  }
+  .btn-power { top: 200px; height: 56px; }
+  .btn-vol-up { top: 78px; height: 34px; }
+  .btn-vol-down { top: 122px; height: 34px; }
+
+  .phone-3d__notch {
+    position: absolute;
+    top: 16px;
     left: 50%;
     transform: translateX(-50%);
-    width: 72px;
-    height: 16px;
-    background: #0c0224;
-    border-radius: 10px;
+    width: 84px;
+    height: 22px;
+    background: #000;
+    border-radius: 12px;
     z-index: 2;
   }
 
-  .phone-mock__screen {
+  .phone-3d__screen {
     width: 100%;
     height: 100%;
-    background: linear-gradient(165deg, #8735f2, #4a12a8 62%, #2c0a72);
-    border-radius: 30px;
+    background: linear-gradient(165deg, #8b3ef5 0%, #5c17c4 55%, #2c0a72 100%);
+    border-radius: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
   }
 
-  .phone-mock__logo {
-    width: 104px;
-    height: 104px;
-    border-radius: 24px;
-    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.15);
-  }
-
-  .phone-mock__wordmark {
+  .phone-3d__screen::after {
+    content: "";
     position: absolute;
-    bottom: 34px;
+    inset: 0;
+    background: linear-gradient(115deg, rgba(255,255,255,0.16), transparent 40%);
+    pointer-events: none;
+  }
+
+  .phone-3d__logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 23px;
+    box-shadow: 0 22px 44px -12px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.15);
+  }
+
+  .phone-3d__wordmark {
+    position: absolute;
+    bottom: 36px;
     left: 0;
     right: 0;
     text-align: center;
     font-family: var(--serif);
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: rgba(255,255,255,0.92);
     letter-spacing: -0.01em;
   }
 
+  .phone-ground-shadow {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72%;
+    height: 32px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.5), transparent 72%);
+    filter: blur(4px);
+    z-index: 0;
+  }
+
   @media (max-width: 60rem) {
     .hero-grid { grid-template-columns: 1fr; }
-    .phone-stage { margin-top: 3rem; }
-    .phone-mock { transform: rotateY(-16deg) rotateX(5deg); width: 200px; height: 414px; }
+    .phone-stage { margin-top: 2rem; }
+    .phone-3d { transform: rotateY(-34deg) rotateX(8deg); --w: 202px; --h: 416px; --d: 30px; --r: 38px; }
   }
 
   @media (max-width: 30rem) {
-    .phone-mock { width: 168px; height: 348px; border-radius: 34px; }
-    .phone-mock__logo { width: 78px; height: 78px; border-radius: 18px; }
+    .phone-3d { --w: 172px; --h: 354px; --d: 26px; --r: 32px; }
+    .phone-3d__logo { width: 76px; height: 76px; border-radius: 18px; }
   }
 
   /* ---------- Prose sections ---------- */
@@ -476,11 +563,23 @@
         <a class="button" href="https://play.google.com/store/apps/details?id=com.advaith.upimoneytracker">Get it on Google Play</a>
       </div>
       <div class="phone-stage">
-        <div class="phone-mock" aria-hidden="true">
-          <div class="phone-mock__notch"></div>
-          <div class="phone-mock__screen">
-            <img class="phone-mock__logo" src="assets/icon.png" alt="">
-            <span class="phone-mock__wordmark">UnifyPay</span>
+        <div class="phone-ground-shadow"></div>
+        <div class="phone-3d" aria-hidden="true">
+          <div class="phone-3d__face phone-3d__edge phone-3d__edge--top"></div>
+          <div class="phone-3d__face phone-3d__edge phone-3d__edge--bottom"></div>
+          <div class="phone-3d__face phone-3d__edge phone-3d__edge--left"></div>
+          <div class="phone-3d__face phone-3d__edge phone-3d__edge--right">
+            <div class="phone-3d__button btn-vol-up"></div>
+            <div class="phone-3d__button btn-vol-down"></div>
+            <div class="phone-3d__button btn-power"></div>
+          </div>
+          <div class="phone-3d__face phone-3d__back"></div>
+          <div class="phone-3d__face phone-3d__front">
+            <div class="phone-3d__notch"></div>
+            <div class="phone-3d__screen">
+              <img class="phone-3d__logo" src="assets/icon.png" alt="">
+              <span class="phone-3d__wordmark">UnifyPay</span>
+            </div>
           </div>
         </div>
       </div>
