@@ -97,10 +97,86 @@
     .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 
+  /* ---------- Nav ---------- */
+
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 1.25rem 1.5rem 0;
+  }
+
+  .nav {
+    max-width: 68rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.6rem 0.6rem 1.1rem;
+    background: rgba(15, 4, 41, 0.72);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav__brand img {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__links a {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .nav__links a:hover { color: var(--ink); }
+
+  .nav__cta {
+    display: inline-block;
+    background: #fff;
+    color: var(--brand);
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.55em 1.25em;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 180ms cubic-bezier(.2,.6,.2,1);
+  }
+
+  .nav__cta:hover { transform: translateY(-1px); text-decoration: none; }
+
+  @media (max-width: 48rem) {
+    .nav__links { display: none; }
+  }
+
   /* ---------- Hero ---------- */
 
   .hero {
-    padding: 6.5rem 0 5rem;
+    padding: 4.5rem 0 5rem;
     overflow: hidden;
   }
 
@@ -117,6 +193,13 @@
     border-radius: 16px;
     margin-bottom: 2rem;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15), 0 12px 28px -14px rgba(0,0,0,0.45);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 
   .hero h1 {
@@ -553,14 +636,34 @@
 
 <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
 
-<header class="hero">
+<div class="nav-wrap">
+  <nav class="nav">
+    <a class="nav__brand" href="#top">
+      <img src="assets/icon.png" alt="">
+      UnifyPay
+    </a>
+    <ul class="nav__links">
+      <li><a href="#what">What it does</a></li>
+      <li><a href="#why">Why</a></li>
+      <li><a href="#how">How it's built</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#founder">Founder</a></li>
+    </ul>
+    <a class="nav__cta" href="https://play.google.com/store/apps/details?id=com.advaith.upimoneytracker">Get the app</a>
+  </nav>
+</div>
+
+<header class="hero" id="top">
   <div class="wrap-wide">
     <div class="hero-grid">
       <div>
         <img class="icon" src="assets/icon.png" alt="UnifyPay app icon">
         <h1>UnifyPay</h1>
         <p class="tagline">Reads your UPI and bank SMS and tracks your spending automatically — no typing in expenses, no linking your bank account to a third party.</p>
-        <a class="button" href="https://play.google.com/store/apps/details?id=com.advaith.upimoneytracker">Get it on Google Play</a>
+        <div class="hero-actions">
+          <a class="button" href="https://play.google.com/store/apps/details?id=com.advaith.upimoneytracker">Get it on Google Play</a>
+          <a class="button-outline" href="#what">See how it works</a>
+        </div>
       </div>
       <div class="phone-stage">
         <div class="phone-ground-shadow"></div>
